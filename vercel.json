@@ -3,30 +3,19 @@
     "builds": [
       {
         "src": "src/index.ts",
-        "use": "@vercel/node",
-        "config": {
-          "includeFiles": ["src/**/*.ts"]
-        }
+        "use": "@vercel/node"
       }
     ],
     "routes": [
       {
         "src": "/send-email",
         "dest": "src/index.ts",
-        "methods": ["POST"],
+        "methods": ["POST", "OPTIONS"],
         "headers": {
-          "Access-Control-Allow-Origin": "https://solveria.cl",
-          "Access-Control-Allow-Methods": "POST",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
           "Access-Control-Allow-Headers": "Content-Type"
         }
-      },
-      {
-        "src": "/health",
-        "dest": "src/index.ts",
-        "methods": ["GET"]
       }
-    ],
-    "env": {
-      "NODE_ENV": "production"
-    }
+    ]
   }

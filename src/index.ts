@@ -7,6 +7,8 @@ dotenv.config();
 
 const app = express();
 
+
+
 // Configuración CORS para producción
 const allowedOrigins = [
   'http://localhost:5173', // Desarrollo
@@ -14,6 +16,14 @@ const allowedOrigins = [
   'https://www.solveria.cl',
   'https://ia-enterprise-8g11a7dpp-ssanmaps-projects.vercel.app' // URL de Vercel
 ];
+
+
+// Agrega esto ANTES de las rutas
+app.options('*', cors({
+    origin: allowedOrigins,
+    methods: ['POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type']
+  }));
 
 app.use(cors({
   origin: function(origin, callback) {
